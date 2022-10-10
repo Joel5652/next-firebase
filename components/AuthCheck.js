@@ -11,17 +11,9 @@ export default function AuthCheck(props) {
 
     const { username: account } = router.query;
 
-    console.log('User', username);
-
-    console.log('Account', account);
-
-    return username === account ? (
-        props.children
-    ) : props.fallback || !username ? (
-        <Link href='/enter'>You must be logged in to access this.</Link>
-    ) : (
-        <Link href={`/${username}/admin`}>
-            Access denied. You must be authenticated to access this users page.
-        </Link>
-    );
+    return username === account
+        ? props.children
+        : props.fallback || (
+              <Link href='/enter'>You must be logged in to access this.</Link>
+          );
 }

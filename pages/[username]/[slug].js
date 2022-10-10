@@ -78,9 +78,7 @@ export default function PostPage(props) {
                     <strong>{post?.heartCount || 0} 🤍</strong>
                 </p>
 
-                <AuthCheck>
-                    <HeartButton postRef={post} />
-                </AuthCheck>
+                <HeartButton postRef={post} />
             </aside>
         </main>
     );

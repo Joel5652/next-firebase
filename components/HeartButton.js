@@ -1,11 +1,9 @@
-import {
-    useDocument,
-    useDocumentData,
-    useDocumentOnce,
-} from 'react-firebase-hooks/firestore';
-import { doc, writeBatch, increment, updateDoc } from 'firebase/firestore';
+import { useDocumentData } from 'react-firebase-hooks/firestore';
+import { doc, writeBatch, increment } from 'firebase/firestore';
 
 import { auth, firestore } from '../lib/firebase';
+
+import Link from 'next/link';
 
 export default function HeartButton({ postRef }) {
     let reference;
@@ -57,8 +55,6 @@ export default function HeartButton({ postRef }) {
     };
 
     const removeHeart = async () => {
-        const uid = auth.currentUser.uid;
-
         const batch = writeBatch(firestore);
 
         batch.update(
@@ -80,9 +76,24 @@ export default function HeartButton({ postRef }) {
         await batch.commit();
     };
 
-    return value != undefined ? (
-        <button onClick={removeHeart}>Un-Like (Is this a word?)</button>
-    ) : (
-        <button onClick={addHeart}>Like</button>
-    );
+    let uid = null;
+    try {
+        uid = auth.currentUser.uid;
+    } catch (err) {
+        console.log('no user');
+    }
+
+    if (uid === null) {
+        return (
+            <Link href={`/enter`}>
+                <button>Sign in</button>
+            </Link>
+        );
+    } else {
+        return value != undefined ? (
+            <button onClick={removeHeart}>Un-Like (Is this a word?)</button>
+        ) : (
+            <button onClick={addHeart}>Like</button>
+        );
+    }
 }
