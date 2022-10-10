@@ -1,11 +1,9 @@
 import Link from 'next/link';
 
-export default function Custom404() {
+export default function Custom505() {
     return (
         <main>
-            <h1>
-                505 Internal server error - I'm terrible at development sorry
-            </h1>
+            <h1>505 - That page does not seem to exist...</h1>
             <iframe
                 src='https://giphy.com/embed/l2JehQ2GitHGdVG9y'
                 width='480'
