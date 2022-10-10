@@ -80,7 +80,7 @@ function CreateNewPost() {
 
         toast.success('Post created!');
 
-        router.push(`/admin/${slug}`);
+        router.push(`/${username}/admin/${slug}`);
     };
 
     return (

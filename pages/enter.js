@@ -33,7 +33,11 @@ export default function Enter(props) {
 // Sign in with Google button
 function SignInButton() {
     const signInWithGoogle = async () => {
-        await signInWithPopUp(auth, googleAuthProvider);
+        try {
+            await signInWithPopUp(auth, googleAuthProvider);
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     return (

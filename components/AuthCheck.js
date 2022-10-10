@@ -18,9 +18,7 @@ export default function AuthCheck(props) {
     return username === account ? (
         props.children
     ) : props.fallback || !username ? (
-        <Link href='/enter'>
-            Access denied. You must be logged in to access this page.
-        </Link>
+        <Link href='/enter'>You must be logged in to access this.</Link>
     ) : (
         <Link href={`/${username}/admin`}>
             Access denied. You must be authenticated to access this users page.
