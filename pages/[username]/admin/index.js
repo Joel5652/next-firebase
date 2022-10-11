@@ -91,9 +91,7 @@ function CreateNewPost() {
                 placeholder='My new Article!'
                 className={styles.input}
             />
-            <p>
-                <strong>Slug:</strong> {slug}
-            </p>
+
             <button
                 type='submit'
                 disabled={!isValid}

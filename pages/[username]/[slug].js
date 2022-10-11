@@ -1,5 +1,6 @@
 import {
     firestore,
+    getAllComments,
     getAllPosts,
     getSlugPost,
     getUserWithUsername,
@@ -21,6 +22,7 @@ export async function getStaticProps({ params }) {
 
     let post;
     let path = [];
+    let comments = 'hi';
 
     if (userDoc) {
         post = await getSlugPost(userDoc, slug);
@@ -32,10 +34,16 @@ export async function getStaticProps({ params }) {
         }
 
         path.push(userDoc.id, post.slug);
+
+        try {
+            comments = await getAllComments(post.uid, post.slug);
+        } catch (err) {
+            console.log('Error fetching comments...', err);
+        }
     }
 
     return {
-        props: { post, path },
+        props: { post, path, comments },
         revalidate: 5000,
     };
 }
@@ -67,6 +75,8 @@ export default function PostPage(props) {
 
     const post = realtimePost || props.post;
 
+    const comments = props.comments;
+
     return (
         <main className={styles.container}>
             <section>
@@ -79,7 +89,22 @@ export default function PostPage(props) {
                 </p>
 
                 <HeartButton postRef={post} />
+
+                <CommentSection data={comments} />
             </aside>
         </main>
+    );
+}
+
+function CommentSection({ data }) {
+    return (
+        <section className={styles.commentSection}>
+            <h3>Comments section</h3>
+
+            {data &&
+                data.map(comment => {
+                    return <p>{comment.content}</p>;
+                })}
+        </section>
     );
 }

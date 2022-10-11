@@ -20,7 +20,7 @@ export default function PostContent({ post }) {
                 on {createdAt.toLocaleDateString()} at{' '}
                 {createdAt.toLocaleTimeString()}
             </span>
-            <ReactMarkdown>{post?.content}</ReactMarkdown>
+            <ReactMarkdown className='wrap'>{post?.content}</ReactMarkdown>
         </div>
     );
 }
