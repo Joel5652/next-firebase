@@ -103,7 +103,7 @@ function CommentSection({ data }) {
 
             {data &&
                 data.map(comment => {
-                    return <p>{comment.content}</p>;
+                    return <p key={comment.username}>{comment.content}</p>;
                 })}
         </section>
     );
