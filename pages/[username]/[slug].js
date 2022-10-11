@@ -101,10 +101,10 @@ function CommentSection({ data }) {
         <section className={styles.commentSection}>
             <h3>Comments section</h3>
 
-            {data &&
+            {/* {data &&
                 data.map(comment => {
                     return <p key={comment.username}>{comment.content}</p>;
-                })}
+                })} */}
         </section>
     );
 }

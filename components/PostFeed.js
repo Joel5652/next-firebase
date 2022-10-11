@@ -41,10 +41,10 @@ function PostItem({ post, admin = false }) {
                     {' '}
                     {post.heartCount} {post.heartCount > 1 ? 'Likes' : 'Like'}
                 </span>
-                <span style={{ marginLeft: 30 }}>
+                {/* <span style={{ marginLeft: 30 }}>
                     {post.heartCount}{' '}
                     {post.heartCount > 1 ? 'Comments' : 'Comment'}
-                </span>
+                </span> */}
             </footer>
 
             {/* If admin view, show extra controls for user */}
